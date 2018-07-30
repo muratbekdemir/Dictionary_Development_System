@@ -1,0 +1,33 @@
+﻿@model List<Dictionary_Development_System_Presentation.Controllers.HomeController.SidebarModel>
+<div class="sidebar">
+  <nav class="sidebar-nav">
+    <ul class="nav">
+      @if (Model.Count() > 0)
+      {
+        foreach (var sidebar in Model)
+        {
+          <li class="nav-item">
+            <a class="@sidebar.AClass" href="@sidebar.AHref"><i class="@sidebar.IClass"></i> @sidebar.AValue <span class="@sidebar.SpanClass">@sidebar.SpanValue</span></a>
+          </li>
+        }
+      }
+      <li class="divider"></li>
+    </ul>
+  </nav>
+  <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+</div>
+@*@if (Model.Count != 0)
+{
+
+}*@
+@*else
+  {
+    <div style="width:100px" class="sidebar">
+      <nav class="sidebar-nav">
+        <ul class="nav">
+
+        </ul>
+      </nav>
+      <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    </div>
+  }*@

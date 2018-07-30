@@ -1,0 +1,49 @@
+﻿@model List<Dictionary_Development_System_RequestResponse.ResponseModels.Word.GetDeveloperTasksResponse>
+@{
+  ViewBag.Title = "GetDeveloperTasks";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="main">
+  <!-- Breadcrumb -->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/Developer/Index">Ana Sayfa</a></li>
+    <li class="breadcrumb-item">Görevlerim</li>
+    <!-- Breadcrumb Menu-->
+  </ol>
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Konu</th>
+            <th>Rapor Edilme Zamanı</th>
+            <th>Görev Atama Zamanı</th>
+            <th>Sonuçlandır</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (Model.Count == 0)
+          {
+            <tr>
+              <td colspan="6" align="center"> --   GÖRÜNTÜLENECEK GÖREV BULUNAMADI   -- </td>
+            </tr>
+          }
+          else
+          {
+            foreach (var item in Model)
+            {
+              <tr>
+                <td>@item.Word</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.UpdatedDate</td>
+                <td><a href="/Developer/SendResearchView/@item.Id" type="button" class="btn btn-success"> Araştırma Ekle</a></td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+

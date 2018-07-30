@@ -1,0 +1,25 @@
+﻿@model Dictionary_Development_System_RequestResponse.ResponseModels.Word.SearchResponse
+@{
+  ViewBag.Title = "Search";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="main">
+<!-- Breadcrumb -->
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/Home/Index">Ana Sayfa</a></li>
+  <li class="breadcrumb-item">Sonuç</li>
+  <!-- Breadcrumb Menu-->
+</ol>
+  <div class="col-sm-6 col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h2><i class="icon-pie-chart"></i> @Model.Word</h2>
+      </div>
+      <div class="card-body">
+        @Html.Raw(Model.Content)
+      </div>
+    </div>
+  </div>
+
+</main>
+

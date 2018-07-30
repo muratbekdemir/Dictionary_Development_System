@@ -1,0 +1,231 @@
+﻿@model List<Dictionary_Development_System_RequestResponse.ResponseModels.Account.GetUserResponse>
+@{
+  ViewBag.Title = "GetUsers";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="main">
+  <!-- Breadcrumb -->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/Admin/Index">Ana Sayfa</a></li>
+    <li class="breadcrumb-item">Yönetim</li>
+    <!-- Breadcrumb Menu-->
+  </ol>
+  <div class="col-md-12 mb-4">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#UserList" role="tab" aria-controls="home" aria-expanded="true"><i class="icon-people"></i> Kullanıcılar &nbsp;</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#AddUser" onclick="fillInterestOption()" role="tab" aria-controls="profile" aria-expanded="false"><i class="icon-user-follow"></i> Kullanıcı Ekle &nbsp;</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#AddInterest" role="tab" aria-controls="profile" aria-expanded="false"><i class="icon-layers"></i> İlgi Alanı Ekle &nbsp;</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="UserList" role="tabpanel" aria-expanded="true">
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Adı Soyadı</th>
+                  <th>Mail</th>
+                  <th>Rolü</th>
+                  <th>İlgi Alanı</th>
+                  <th>Oluşturulma Zamanı</th>
+                  <th>Güncelleme Zamanı</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if (Model.Count == 0)
+                {
+                <tr>
+                  <td colspan="7" align="center"> --   GÖRÜNTÜLENECEK VERİ BULUNAMADI   -- </td>
+                </tr>
+                }
+                else
+                {
+                  foreach (var item in Model)
+                  {
+                <tr id="UserRow_@item.UserId" pass="@item.Password">
+                  <td id="userNameSurnameRow_@item.UserId">@item.UserName @item.UserSurname</td>
+                  <td id="userEmailRow_@item.UserId">@item.Email</td>
+                  <td id="userRoleRow_@item.UserId" val=@item.RoleId>@item.RoleName</td>
+                  <td id="userInterestRow_@item.UserId" val="@item.InterestId">@item.InterestName</td>
+                  <td>@item.CreatedDate</td>
+                  <td>@item.UpdatedDate</td>
+                  <td align="center">
+                    <button type="button" onclick="EditUserButton(@item.UserId,'@item.UserName','@item.UserSurname')" data-toggle="modal" data-target="#largeModal" class="btn btn-danger" style="height:40px; width:120px;" onclick="editUser()">
+                      <span class="icon-settings" aria-hidden="true"></span>
+                    </button>
+                  </td>
+                </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="AddUser" role="tabpanel" aria-expanded="false">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <strong>Kullanıcı</strong>
+                Ekle
+              </div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="text-input">Adı</label>
+                  <div class="col-md-9">
+                    <input type="text" id="userName" name="text-input" class="form-control forReset" placeholder="Kullanıcı Adını Giriniz...">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="text-input">Soyadı</label>
+                  <div class="col-md-9">
+                    <input type="text" id="userSurname" name="text-input" class="form-control forReset" placeholder="Kullanıcı Soyadını Giriniz...">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="email-input">E-Mail</label>
+                  <div class="col-md-9">
+                    <input type="email" id="userEmail" name="email-input" class="form-control forReset" placeholder="Kullanıcı Mail Adresini Giriniz...">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="password-input">Parola</label>
+                  <div class="col-md-9">
+                    <input type="password" id="userPassword" name="password-input" class="form-control forReset" placeholder="Kullanıcı Parolası Giriniz...">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="password-input">Parola Tekrar</label>
+                  <div class="col-md-9">
+                    <input type="password" id="userPasswordAgain" name="password-input" class="form-control forReset" placeholder="Kullanıcı Parolasını Tekrar Giriniz...">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="select">İlgi Alanı</label>
+                  <div class="col-md-9">
+                    <select name="select" class="form-control" id="interestOptionList">
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="select">Yetki</label>
+                  <div class="col-md-9">
+                    <select id="RoleOptionList" name="select" class="form-control">
+                      <option value="0">Lütfen Bir Yetki Seçin</option>
+                      <option value="1">Kullanıcı</option>
+                      <option value="2">Geliştirici</option>
+                      <option value="4">Kurul Üyesi</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="button" onclick="addUserButton()" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <button type="reset" onclick="resetButtonClick()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="AddInterest" role="tabpanel" aria-expanded="false">
+        <div class="card">
+          <div class="card-header">
+            <strong>İlgi Alanı</strong>
+            Ekle
+          </div>
+          <div class="card-body">
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="hf-email">İlgi Alanı Adı : </label>
+                <div class="col-md-9">
+                  <input type="text" id="InterestNameBox" name="text-input" class="form-control forReset" placeholder="Eklemek İstediğiniz İlgi Alanının Yazınız.">
+                </div>
+              </div>
+          </div>
+          <div class="card-footer">
+            <button type="button" onclick="AddInterest()" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Ekle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+@*User edit modalı*@
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">TANIMLANAMADI</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="text-input">Adı</label>
+          <div class="col-md-9">
+            <input type="text" id="editUserName" name="text-input" class="form-control isNullControl" placeholder="Kullanıcı Adını Giriniz...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="text-input">Soyadı</label>
+          <div class="col-md-9">
+            <input type="text" id="editUserSurname" name="text-input" class="form-control isNullControl" placeholder="Kullanıcı Soyadını Giriniz...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="email-input">E-Mail</label>
+          <div class="col-md-9">
+            <input type="email" id="editUserEmail" name="email-input" class="form-control isNullControl" placeholder="Kullanıcı Mail Adresini Giriniz...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="password-input">Parola</label>
+          <div class="col-md-9">
+            <input type="password" id="editUserPassword" name="password-input" class="form-control isNullControl" placeholder="Kullanıcı Parolası Giriniz...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="password-input">Parola Tekrar</label>
+          <div class="col-md-9">
+            <input type="password" id="EditUserPasswordAgain" name="password-input" class="form-control isNullControl" placeholder="Kullanıcı Parolasını Tekrar Giriniz...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="select">İlgi Alanı</label>
+          <div class="col-md-9">
+            <select name="select" class="form-control" id="interestOptionListEdit">
+              <option value="0">Lütfen Bir İlgi Alanı Seçin</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="select">Yetki</label>
+          <div class="col-md-9">
+            <select id="EditRoleOptionList" name="select" class="form-control">
+              <option value="0">Lütfen Bir Yetki Seçin</option>
+              <option value="1">Kullanıcı</option>
+              <option value="2">Geliştirici</option>
+              <option value="4">Kurul Üyesi</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div id="appendLocation">
+          @*Buraya Butonlar işleniyor*@
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

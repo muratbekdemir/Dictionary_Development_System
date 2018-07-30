@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DDSystem_Context.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dictionary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Word" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeveloperId" Type="int" Nullable="false" />
+    <Property Name="InterestId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="UpdatedDate" Type="date" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Interest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="UpdatedDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TempWord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Word" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="InterestId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="UpdatedDate" Type="date" Nullable="false" />
+    <Property Name="AcceptanceVote" Type="int" Nullable="false" />
+    <Property Name="RejectionVote" Type="int" Nullable="false" />
+    <Property Name="DeveloperId" Type="int" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="int" Nullable="false" />
+    <Property Name="InterestId" Type="int" Nullable="false" />
+    <Property Name="CreatedDaate" Type="date" Nullable="false" />
+    <Property Name="UpdatedDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Votes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeveloperId" Type="int" Nullable="false" />
+    <Property Name="WordId" Type="int" Nullable="false" />
+    <Property Name="Value" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Dictionary_Interest">
+    <End Role="Interest" Type="Self.Interest" Multiplicity="1" />
+    <End Role="Dictionary" Type="Self.Dictionary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dictionary">
+        <PropertyRef Name="InterestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dictionary_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Dictionary" Type="Self.Dictionary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dictionary">
+        <PropertyRef Name="DeveloperId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TempWord_Interest">
+    <End Role="Interest" Type="Self.Interest" Multiplicity="1" />
+    <End Role="TempWord" Type="Self.TempWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TempWord">
+        <PropertyRef Name="InterestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Interest">
+    <End Role="Interest" Type="Self.Interest" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="InterestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DDSystem_ContextStoreContainer">
+    <EntitySet Name="Dictionary" EntityType="Self.Dictionary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interest" EntityType="Self.Interest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TempWord" EntityType="Self.TempWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Votes" EntityType="Self.Votes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Dictionary_Interest" Association="Self.FK_Dictionary_Interest">
+      <End Role="Interest" EntitySet="Interest" />
+      <End Role="Dictionary" EntitySet="Dictionary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dictionary_User" Association="Self.FK_Dictionary_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Dictionary" EntitySet="Dictionary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TempWord_Interest" Association="Self.FK_TempWord_Interest">
+      <End Role="Interest" EntitySet="Interest" />
+      <End Role="TempWord" EntitySet="TempWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Interest" Association="Self.FK_User_Interest">
+      <End Role="Interest" EntitySet="Interest" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

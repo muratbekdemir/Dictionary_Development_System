@@ -1,0 +1,23 @@
+﻿@model Dictionary_Development_System_RequestResponse.ViewModels.Developer.SendResearchViewModel
+@{
+  ViewBag.Title = "SendResearchView";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/plugin/ckeditor/ckeditor.js"></script>
+<script src="~/Content/plugin/ckeditor/samples/js/sample.js"></script>
+<link href="~/Content/plugin/ckeditor/samples/css/samples.css" rel="stylesheet" />
+<link href="~/Content/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css" rel="stylesheet" />
+
+<main class="main">
+  <div class="card">
+    <div class="card-body">
+      <div id="editor"></div>
+
+      <button type="button" onclick="SendTaskButtonClick(@Model.WordId)" class="btn btn-primary btn-lg">Gönder</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  initSample();
+</script>

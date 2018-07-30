@@ -1,0 +1,29 @@
+﻿
+@model Dictionary_Development_System_RequestResponse.ResponseModels.Account.UserResponse
+
+@if (Model.UserView != null)
+{
+  <span><i class="fa fa-shield" aria-hidden="true"></i> @Model.UserView.RoleName <span class="col-md-offset-1"></span></span>
+
+  <span><i class="fa fa-envelope-o" aria-hidden="true"></i> @Model.UserView.Email <span class="col-md-offset-1"></span></span>
+  
+  <span><i class="fa fa-user-o" aria-hidden="true"></i> Hoşgeldiniz  @Model.UserView.Name   @Model.UserView.Surname</span>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+      <div class="dropdown-header text-center">
+      </div>
+      <a class="dropdown-item" href="/Account/Logout"><i class="icon-logout"></i> Log-Out </a>
+      @*<a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="badge badge-warning">42</span></a>*@
+    </div>
+  </li>
+
+}
+else
+{
+  <a class="btn btn-primary" href="/Account/Login" style="margin-right:30px;">Log In</a>
+}

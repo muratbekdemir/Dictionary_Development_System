@@ -1,0 +1,34 @@
+﻿@model Dictionary_Development_System_RequestResponse.ResponseModels.Word.NotFoundResponse
+@{
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="main">
+  <div class="col-sm-6 col-md-12" style="margin-top:20px;">
+    <div class="card card-accent-warning">
+      <div class="card-header">
+        <h4 class="pt-3">"@Model.Word" sözlükte bulunmamaktadır.</h4>
+      </div>
+      <div class="card-body">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="clearfix">
+                <p>Lütfen bunu bize bildirin. </p>
+                <h5>Kelimenin İlgi Alanı :</h5>
+                <select id="InterestsDropdownlist" class="form-control" required>
+                  @foreach (var item in Model.Interests)
+                  {
+                    <option value="@item.Id">@item.Name</option>
+                  }
+                </select>
+                <button class="btn btn-warning" style="margin-top:10px;" onclick="ReportButtonClick('@Model.Word')" type="button">Bildir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</main>

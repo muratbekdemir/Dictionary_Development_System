@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DDSystem_ContextStoreContainer" CdmEntityContainer="DDS_Context">
+    <EntitySetMapping Name="Dictionary">
+      <EntityTypeMapping TypeName="DDSystem_Context.Dictionary">
+        <MappingFragment StoreEntitySet="Dictionary">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InterestId" ColumnName="InterestId" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Interest">
+      <EntityTypeMapping TypeName="DDSystem_Context.Interest">
+        <MappingFragment StoreEntitySet="Interest">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TempWord">
+      <EntityTypeMapping TypeName="DDSystem_Context.TempWord">
+        <MappingFragment StoreEntitySet="TempWord">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="RejectionVote" ColumnName="RejectionVote" />
+          <ScalarProperty Name="AcceptanceVote" ColumnName="AcceptanceVote" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InterestId" ColumnName="InterestId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="DDSystem_Context.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDaate" ColumnName="CreatedDaate" />
+          <ScalarProperty Name="InterestId" ColumnName="InterestId" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Votes">
+      <EntityTypeMapping TypeName="DDSystem_Context.Votes">
+        <MappingFragment StoreEntitySet="Votes">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

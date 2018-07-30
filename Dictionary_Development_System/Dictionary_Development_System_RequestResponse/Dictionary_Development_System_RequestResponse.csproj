@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5AB65DE-F663-4358-AA8E-5AF2DFB0E647}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dictionary_Development_System_RequestResponse</RootNamespace>
+    <AssemblyName>Dictionary_Development_System_RequestResponse</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enum\Role.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestModels\Account\AddUserRequest.cs" />
+    <Compile Include="RequestModels\Account\LoginRequest.cs" />
+    <Compile Include="RequestModels\Interest\AddInterestRequest.cs" />
+    <Compile Include="RequestModels\Word\AssignWordToDeveloperRequest.cs" />
+    <Compile Include="RequestModels\Word\GetRatingWordsRequest.cs" />
+    <Compile Include="RequestModels\Word\ReportRequest.cs" />
+    <Compile Include="RequestModels\Word\SearchWordRequest.cs" />
+    <Compile Include="RequestModels\Word\SendTaskToAdminRequest.cs" />
+    <Compile Include="ResponseModels\Account\GetUserResponse.cs" />
+    <Compile Include="ResponseModels\Account\LoginResponse.cs" />
+    <Compile Include="ResponseModels\Account\UserResponse.cs" />
+    <Compile Include="ResponseModels\BaseResponse.cs" />
+    <Compile Include="ResponseModels\Developer\InterestsDevelopersResponse.cs" />
+    <Compile Include="ResponseModels\Interest\GetInterestResponse.cs" />
+    <Compile Include="ResponseModels\Word\GetAssignedTasksResponse.cs" />
+    <Compile Include="ResponseModels\Word\GetDeveloperTasksResponse.cs" />
+    <Compile Include="ResponseModels\Word\GetPendingWordsResponse.cs" />
+    <Compile Include="ResponseModels\Word\GetReportedWordResponse.cs" />
+    <Compile Include="ResponseModels\Word\GetVotingTasksResponse.cs" />
+    <Compile Include="ResponseModels\Word\NotFoundResponse.cs" />
+    <Compile Include="ResponseModels\Word\SearchResponse.cs" />
+    <Compile Include="ResponseModels\Word\SendTaskFromAdminRequest.cs" />
+    <Compile Include="ViewModels\Account\UserView.cs" />
+    <Compile Include="ViewModels\Developer\SendResearchViewModel.cs" />
+    <Compile Include="ViewModels\Interest\InterestView.cs" />
+    <Compile Include="ViewModels\Word\WordView.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

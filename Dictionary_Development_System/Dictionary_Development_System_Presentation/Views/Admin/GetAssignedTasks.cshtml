@@ -1,0 +1,51 @@
+﻿@model List<Dictionary_Development_System_RequestResponse.ResponseModels.Word.GetAssignedTasksResponse>
+@{
+  ViewBag.Title = "GetAssignedTasks";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="main">
+  <!-- Breadcrumb -->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/Admin/Index">Ana Sayfa</a></li>
+    <li class="breadcrumb-item">Görevlendirilenler</li>
+    <!-- Breadcrumb Menu-->
+  </ol>
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Konu</th>
+            <th>Kullanıcı Adı</th>
+            <th>İlgi Alanı</th>
+            <th>Bildirilme Zamanı</th>
+            <th>Görevlendirme Zamanı</th>
+            <th>Görevlendirilen Geliştirici</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (Model.Count == 0)
+          {
+            <tr>
+              <td colspan="6" align="center"> --   GÖREVLENDİRİLEN BİLGİSİ BULUNAMADI   -- </td>
+            </tr>
+          }
+          else
+          {
+            foreach (var item in Model)
+            {
+              <tr>
+                <td>@item.Word</td>
+                <td>@item.UserName  @item.UserSurname</td>
+                <td>@item.Interest.InterestName</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.UpdatedDate</td>
+                <td>@item.DeveloperName  @item.DeveloperSurname</td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

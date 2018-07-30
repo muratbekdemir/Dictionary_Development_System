@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title | DDS</title>
+  <link rel="shortcut icon" href="~/Content/img/icon_book2.png">
+    @Html.Partial("~/Views/Shared/Style-I-Script/_Layout_Styles.cshtml")
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+
+  @Html.Partial("~/Views/Shared/PartialLayout/_Header.cshtml")
+  <div class="app-body">
+    @Html.Action("Sidebar","Home")
+    @RenderBody()
+    
+  </div>
+  @Html.Partial("~/Views/Shared/PartialLayout/_Footer.cshtml")
+  @Html.Partial("~/Views/Shared/Style-I-Script/_Layout_Scripts.cshtml")
+</body>
+</html>

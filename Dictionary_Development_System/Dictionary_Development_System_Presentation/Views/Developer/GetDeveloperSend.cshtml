@@ -1,0 +1,84 @@
+﻿@model List<Dictionary_Development_System_RequestResponse.ResponseModels.Word.GetVotingTasksResponse>
+@{
+  ViewBag.Title = "GetDeveloperTasks";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="main">
+  <!-- Breadcrumb -->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/Developer/Index">Ana Sayfa</a></li>
+    <li class="breadcrumb-item">Oylamadakiler</li>
+    <!-- Breadcrumb Menu-->
+  </ol>
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Konu</th>
+            <th>Bildiren Kullanıcı</th>
+            <th>İlgi Alanı</th>
+            <th>Bildirilme Zamanı</th>
+            <th>Son Güncelleme Zamanı</th>
+            <th>Bulunduğu Aşama</th>
+            <th>Oylama Durumu</th>
+            <th>İçeriği Görüntüle</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (Model.Count == 0)
+          {
+            <tr>
+              <td colspan="9" align="center"> --   GÖRÜNTÜLENECEK VERİ BULUNAMADI   -- </td>
+            </tr>
+          }
+          else
+          {
+            foreach (var item in Model)
+            {
+              <tr>
+                <td>@item.Word</td>
+                <td>@item.UserName  @item.UserSurname</td>
+                <td>@item.Interest.InterestName</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.UpdatedDate</td>
+                <td style="display:none" id="content_@item.WordId">@item.Content</td>
+                <td>@item.Status</td>
+                <td>
+                  <h6 style="color:green;">+@item.AcceptanceVote</h6><h6 style="color:red;">- @item.RejectionVote</h6>
+                </td>
+                <td><button type="button" data-toggle="modal" data-target="#largeModal" onclick="VotingWordsAppendInModel('@item.Word',@item.WordId)" class="btn btn-info active">Görüntüle</button></td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  @*İçerik görüntüleme modalı*@
+  <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          @*Buraya Content İşleniyor*@
+        </div>
+        @*<div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div id="appendLocation">
+              Buraya Onay ve Red butonları işleniyor
+            </div>
+          </div>*@
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</main>
